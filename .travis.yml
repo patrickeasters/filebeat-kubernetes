@@ -1,15 +1,24 @@
 sudo: required
 
+language: go
+
+go:
+  - master
+
 services:
   - docker
 
 env:
   - FILEBEAT_VERSION=5.0.0
+
 install:
   - curl -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-$FILEBEAT_VERSION-linux-x86_64.tar.gz
   - tar -xzf filebeat-$FILEBEAT_VERSION-linux-x86_64.tar.gz
   - mv filebeat-$FILEBEAT_VERSION-linux-x86_64/filebeat ./
   - docker build -t patrickeasters/filebeat-kubernetes .
+
+script:
+  - true
 
 after_success:
   - if [ "$TRAVIS_TAG" != "" ]; then
