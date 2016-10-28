@@ -19,7 +19,7 @@ spec:
             cpu: 50m
             memory: 50Mi
         env:
-          - name: GRAYLOG_HOSTS
+          - name: LOGSTASH_HOSTS
             value: "'server1:12201','server2:12201'"
         volumeMounts:
         - name: varlog

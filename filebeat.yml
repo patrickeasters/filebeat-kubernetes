@@ -8,7 +8,7 @@ filebeat:
 
 output:
   logstash:
-    hosts: [${GRAYLOG_HOSTS:'graylog:12201'}]
+    hosts: [${LOGSTASH_HOSTS:'logstash:12201'}]
     timeout: 15
 
 logging:
