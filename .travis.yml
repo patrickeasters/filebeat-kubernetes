@@ -15,7 +15,8 @@ install:
   - tar -xzf filebeat-$FILEBEAT_VERSION-linux-x86_64.tar.gz
   - mv filebeat-$FILEBEAT_VERSION-linux-x86_64/filebeat ./
   - docker build -t patrickeasters/filebeat-kubernetes .
-
+script:
+  
 after_success:
   - if [ "$TRAVIS_TAG" != "" ]; then
     docker tag patrickeasters/filebeat-kubernetes patrickeasters/filebeat-kubernetes:$TRAVIS_TAG;
