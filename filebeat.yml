@@ -1,0 +1,15 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+        - "/var/log/containers/*.log"
+      document_type: kube-logs
+      tail_files: true
+
+output:
+  logstash:
+    hosts: [${GRAYLOG_HOSTS:'graylog:12201'}]
+    timeout: 15
+
+logging:
+  level: ${LOG_LEVEL:error}
