@@ -10,20 +10,16 @@ services:
 
 env:
   - FILEBEAT_VERSION=5.0.0
-    secure: "R+S6GsyjmGk1HBvox6S67ralZiQ2Xn2OVL1HpwOYNpawyr7b+mHQtygX9Y6XtiD7rrN9N125EPfKxxMnIDmSdNaBgt9Obstpwc+vF1JfW/QSwVoNSIDxW/6qpUz7qA84fXFO3FOHpas1rLaddTrY6nGkXhVHl9cGdMgv4y8LDTxSavXGq6/c5B7I8XQaRb+GoqAuYL7DmDJIGM7OpL0C3MaMGLd8L4xVTr2NgPCuzQEMO2NIGYEzSxJL8Y9+LHd/wSZHY88V01LCMxl+atIy+V9+37yJO7VBv/Q+H6n2LfhBk8I4DAWvqwW2T8ANqGtGvZ3StSHkCa/3vGjalVFsu4XOqjozCxxy0YskMcs0PlQElPTPL4Uguty1fSDWw93eTU1NKiiOiU6q2+IgCfjZ1eXlC2fjfmrYH9mjWTTBrJrmVqdhOxCRyG98EFa+OSYzKzlsZ+onczSgZOkElks8+28Xqf6CcdFJWfSlzzdpl9D6Ep5G8H1mSolPk8+gKFmn40Xp7Ih76dJKPQ6zgmO0VzSCMhYuPq9oGcJrNl/z8/6Cx4LTILQ5WFm278C+P7b4QDkHmLXJfPK3AV1Qky+RnEKucCTIvCtj2PuPY33891n4fLQBtLILzutrB4W9VaFtd5iKjNqsl7quyhcbZLcnpanD3PmgmoiBVDmAulQWnQE="
-    secure: "TSC7hSiG/cHGgh/kgNfkVvd7hwVJ1jTKKGkVTrWGsjBcUeQbUII2WlwXzE5e55IgP0b4IVgYAZJvp/LQPNAAKgu/03UpQrZihssDkyQkwKFSz496Mj2rkFE1LV/q49uT2FK3kWF7jr7JBnVWjQmVmke6ypOrQKM77iy+DrstvO7vbArv+Tx4rTmmjUdRQgjHuQzTS3YCWbhU1s4//IAH/sw0KxBVTOsTJ6RMgQGD+IZWdpq/oZHoR1ClZO1aCEMd1nfnd4jlD6Z4cfGBNXAc595Ptle6B7PwDmoueebkBoLbc8zexlztN5Dv5XM9L/6xpI/5xwlRwaPev0Hr8pjqw74v/5fiXdlGyb3lTR7Rb+B6ula3j7AxOQd8MhTIRfrB8MBgcgM2H8RZQR5S3gYrs86CEQEdxRNLD/7LX2XBG5fJD2pkC0itw/Pufbi7GFLa+h4SqPAhoj9Ojm+eg28rRXwXaEM3s6XzGP2kIHLO7kVdZS/lZPhcBYhp3mcRhPMszIsbgJWxTiU3SEpfCBffY9s0J5jOKtjz+J5DUjpjchhNWBTMzqD2I4cad1Wpp7DtI1AKV0sLkKpj1tmG8b9ljelXMpj770wrASFZqQucNXEUmoFnT2sNGJCl4jthOse98h837MZwcU6gg7rCxSvgupf5E+Vdp+ROCgaWn5WSeNU="
-    secure: "s3cly3B4jxwHGycv1h41XKDWQtdJ6/2LiAPQA0hST/izQBnTpP2bBFK2rAhJfdjRhY/mHfUdlNrjlvQQC90oXnLSeIbGdGw1Q1eeNIs3gzkJ40XJ1m9InCh4yDHd9G5tBspq+ZsyQ19AILC8KDwgUwSi8RgZnBt4FVaaum4tcL6/W90YVG9BXaGVynNa8N1mP3tT+jDXyxzk1/59tRp1y4/CIFM/E64R18hFdgV1MgrVaM+5KqUlJzLR4OZDiVv6ujh6KoCyPLj1qEcghBllqBqXFd2n2nAeZtxg5eMqYfX8btXRx71/Ii/qpzTNqHizLalmMqTYh3op4O+Wh8G+vHXrGwWliiF2OZ77+P2kY0feAWOz3+snVez8rO7Vc2bqwYl03d02xt+lkOxo17i0Lvbw2/3FMYns4CU/eG2z2rUlfoHsBtnsF8FvEKJrJk19PS8KIOgKnVjiY/3W9yqoDq8bkPb/mGyF+juJfxwOiEl+y/X4kOTBQWPONPwNqkRdVJTNxoc/WeerYmZQaYNain1XDJacnpqexIb9KZzZH0DCXkLU5irhHGtpfkA39/Fclq0BzE1/ooda7kqHj2BKYdUq1/jNdqobuitUOlW9ByMaxU/tUC8y0rCjjoNcvGJ1MPNaFVBBKfLG/PBUA3Yy4p4A++CSh5Fnc7jhDrEfV3k="
-
 install:
   - curl -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-$FILEBEAT_VERSION-linux-x86_64.tar.gz
   - tar -xzf filebeat-$FILEBEAT_VERSION-linux-x86_64.tar.gz
   - mv filebeat-$FILEBEAT_VERSION-linux-x86_64/filebeat ./
-  - docker build -t patrickeasters/filebeat-kubernetes-gelf .
+  - docker build -t patrickeasters/filebeat-kubernetes .
 
 after_success:
   - if [ "$TRAVIS_TAG" != "" ]; then
-    docker tag patrickeasters/filebeat-kubernetes-gelf patrickeasters/filebeat-kubernetes-gelf:$TRAVIS_TAG;
+    docker tag patrickeasters/filebeat-kubernetes patrickeasters/filebeat-kubernetes:$TRAVIS_TAG;
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push patrickeasters/filebeat-kubernetes-gelf:$TRAVIS_TAG;
-    docker push patrickeasters/filebeat-kubernetes-gelf:latest;
+    docker push patrickeasters/filebeat-kubernetes:$TRAVIS_TAG;
+    docker push patrickeasters/filebeat-kubernetes:latest;
     fi
