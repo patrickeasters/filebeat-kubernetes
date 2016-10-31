@@ -2,8 +2,6 @@ filebeat.prospectors:
 - input_type: log
   paths:
     - "/var/log/containers/*.log"
-  # dns logs are waaaaay too chatty
-  exclude_files: ['kube-dns-.*\.log']
   document_type: kube-logs
   tail_files: true
 
