@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: filebeat
-        image: docker.io/patrickeasters/filebeat-kubernetes-gelf:5.0.0-1
+        image: docker.io/patrickeasters/filebeat-kubernetes:5.0.0-1
         resources:
           limits:
             cpu: 50m
